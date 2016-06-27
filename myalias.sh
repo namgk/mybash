@@ -1,8 +1,11 @@
-#!/bin/sh
-export PS1="\u@\W$ "
-export PS1="\[\e[1;33m\]$PS1\[\e[m\]"
-
-alias sshkeygen='ssh-keygen -t rsa -b 4096 -C "kyng@ece.ubc.ca"'
+# enable color support of ls and also add handy aliases
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+# some more ls aliases
 alias ll='ls -ahlF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -22,3 +25,19 @@ alias dockerstats='sudo docker stats'
 alias dockerrmimages='sudo docker rmi'
 alias dockerinspect='sudo docker inspect'
 alias dockercompose='sudo docker-compose'
+alias dockerexec='sudo docker exec -it'
+alias dockercleanimages='dockerrmimages $(lsdockerimages | grep "^<none>" | awk "{print $3}")'
+alias dockerviz='dockerrun -d -v /var/run/docker.sock:/var/run/docker.sock -e PORT=3000 -p 3000:3000 centurylink/image-graph'
+alias noderedstart='dockerrun -d -v ~/.node-red/:/root/.node-red -p 1880:1880 -h nodered nhong/node-red'
+alias zkstart='dockerrun -v ~/.zookeeper/conf/:/opt/zookeeper/conf -v ~/.zookeeper/data:/tmp/zookeeper -p 2181:2181 jplock/zookeeper'
+alias kafkastart='dockerrun -v ~/.kafka/data/:/tmp/kafka-logs -v ~/.kafka/config/:/opt/kafka/config -p 9092:9092 nhong/kafka'
+alias rosstart='dockerrun -t -p 9090:9090 nhong/rosbridge'
+# Add an "alert" alias for long running commands.  Use like so:
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# ~/.bash_aliases, instead of adding them here directly.
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+alias ckan-postgres-start='dockerrun --name ckan-postgres -e POSTGRES_PASSWORD=password -e POSTGRES_USER=ckan_default -d postgres'
+alias ckan-solr-start='dockerrun --name ckan-solr -d nhong/solr-tomcat'
+alias ckan-start='dockerrun --link ckan-solr:solr --link ckan-postgres:postgres -p 3433:8080 -d nhong/ckan'
+alias pgadmin-start='dockerrun -d -p 8081:80 --link ckan-postgres:postgresql -e VIRTUAL_HOST=bennu.magic.ubc.ca maxexcloo/phppgadmin'
