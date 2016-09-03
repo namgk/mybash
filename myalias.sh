@@ -34,9 +34,6 @@ alias kafkastart='dockerrun -v ~/.kafka/data/:/tmp/kafka-logs -v ~/.kafka/config
 alias rosstart='dockerrun -t -p 9090:9090 nhong/rosbridge'
 # Add an "alert" alias for long running commands.  Use like so:
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-# ~/.bash_aliases, instead of adding them here directly.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
 alias ckan-postgres-start='dockerrun --name ckan-postgres -e POSTGRES_PASSWORD=password -e POSTGRES_USER=ckan_default -d postgres'
 alias ckan-solr-start='dockerrun --name ckan-solr -d nhong/solr-tomcat'
 alias ckan-start='dockeddrrun --link ckan-solr --link ckan-postgres -p 3433:8080 -d nhong/ckan'
