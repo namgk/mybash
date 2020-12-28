@@ -9,6 +9,9 @@
 alias ll='ls -ahlF'
 alias la='ls -A'
 alias l='ls -CF'
+
+alias base64decode='base64 -d <<< '
+
 alias curljsonpost='curl -H "Content-Type: application/json" -X POST -d'
 alias curljsonput='curl -H "Content-Type: application/json" -X PUT -d'
 alias taskman='ps aux --sort rss'
