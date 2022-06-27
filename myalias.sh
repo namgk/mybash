@@ -98,7 +98,7 @@ export PATH=$PATH:/Users/nhong/Applications/kots_darwin_all
 
 setopt rmstarsilent
 
-
+alias gd='git diff'
 alias gs='git status'
 alias gb='git branch'
 alias gl='git log'
