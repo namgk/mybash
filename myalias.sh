@@ -1,17 +1,3 @@
-# enable color support of ls and also add handy aliases
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-# some more ls aliases
-alias ll='ls -ahlF'
-alias la='ls -A'
-alias l='ls -CF'
-
-alias base64decode='base64 -d <<< '
-
 alias curljsonpost='curl -H "Content-Type: application/json" -X POST -d'
 alias curljsonput='curl -H "Content-Type: application/json" -X PUT -d'
 alias taskman='ps aux --sort rss'
@@ -42,3 +28,83 @@ alias ckan-solr-start='dockerrun --name ckan-solr -d nhong/solr-tomcat'
 alias ckan-start='dockeddrrun --link ckan-solr --link ckan-postgres -p 3433:8080 -d nhong/ckan'
 alias ckan-link-start='dockerrun --link ckan-solr:solr --link ckan-postgres:postgres -p 3433:8080'
 alias pgadmin-start='dockerrun -d -p 8081:80 --link ckan-postgres:postgresql -e VIRTUAL_HOST=bennu.magic.ubc.ca maxexcloo/phppgadmin'
+
+# enable color support of ls and also add handy aliases
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+# some more ls aliases
+alias ll='ls -ahlFrt'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias base64decode='base64 -d <<< '
+alias base64encode='openssl base64 -e <<< '
+
+alias kuberestart='kubectl rollout restart deployment'
+alias kubeupdate='kubectl rollout status -w deployment'
+kuberollbacktorevision(){
+  kubectl rollout undo deployment $1 --to-revision=$2
+}
+alias kubehistory='kubectl rollout history deployment'
+alias kubelogs='kubectl logs'
+alias kubeexec='kubectl exec -it'
+alias kubedescribehpa='kubectl describe hpa'
+alias kubedescribepod='kubectl describe pod'
+alias kubedescribenode='kubectl describe node'
+alias kubedescribeservice='kubectl describe service'
+alias kubedescribesecret='kubectl describe secret'
+alias kubeswitchcontext='kubectl config use-context'
+alias kubepordforwardpod='kubectl port-forward'
+alias kubetoppod='kubectl top pod'
+alias kubetopnode='kubectl top node'
+
+alias lscurentcontext='kubectl config current-context'
+alias lspods='kubectl get pods'
+alias lspodsimages='kubectl get pods -o=custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[0].image'
+alias lsnodes='kubectl get nodes'
+alias lspodsallnamespace='kubectl get pods --all-namespaces'
+alias lspodsnodes='kubectl get pods -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name --sort-by=.spec.nodeName'
+alias lspodsnodesallnamespace='kubectl get pods -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name --sort-by=.spec.nodeName --all-namespaces'
+alias lsservices='kubectl get services'
+alias lsnamespace='kubectl get namespace'
+alias lsconfigmap='kubectl get configmap'
+alias lssecrets='kubectl get secret'
+alias lsservicesaccount='kubectl get serviceaccount'
+alias lsclusterrolebinding='kubectl get clusterrolebinding'
+alias lshpa='kubectl get hpa'
+alias lsservicesendpoints='kubectl describe endpoints'
+
+alias kubeletlogs='journalctl -u kubelet'
+alias kopsexportconfig='kops export kubecfg kube.umbracity.com --admin'
+
+alias kubedeletehpa='kubectl delete hpa'
+alias kubedeletedeployment='kubectl delete deployment'
+alias kubedeletenode='kubectl delete node'
+alias kubedeleteservice='kubectl delete service'
+alias kubedeletesecret='kubectl delete secret'
+
+alias jsonprint='python -m json.tool'
+
+alias kubesetnamespace='kubectl config set-context --current --namespace '
+
+alias kubecurrentns='kubectl config view | grep namespace'
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH=$PATH:/Users/nhong/Applications/heroku/bin
+export PATH=$PATH:/Users/nhong/Applications/kots_darwin_all
+
+setopt rmstarsilent
+
+
+alias gs='git status'
+alias gb='git branch'
+alias gl='git log'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gmr='git push -u origin HEAD'
+alias gm='git merge'
+alias gac='git commit -a -m'
+alias gp='git pull'
