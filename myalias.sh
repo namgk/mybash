@@ -30,12 +30,12 @@ alias ckan-link-start='dockerrun --link ckan-solr:solr --link ckan-postgres:post
 alias pgadmin-start='dockerrun -d -p 8081:80 --link ckan-postgres:postgresql -e VIRTUAL_HOST=bennu.magic.ubc.ca maxexcloo/phppgadmin'
 
 # enable color support of ls and also add handy aliases
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+alias ls='ls --color=auto'
+#alias dir='dir --color=auto'
+#alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 # some more ls aliases
 alias ll='ls -ahlFrt'
 alias la='ls -A'
@@ -108,3 +108,17 @@ alias gmr='git push -u origin HEAD'
 alias gm='git merge'
 alias gac='git commit -a -m'
 alias gp='git pull'
+alias gd='git diff'
+
+aws_switch_profile(){
+ if [ -z $1 ]; then
+   echo "specify the profile to switch"
+ fi
+
+ export AWS_PROFILE=$1
+}
+
+alias ffmpeg-compress='ffmpeg -vcodec libx264 -crf 28 -preset ultrafast -i '
+
+alias ls='ls -lart'
+
