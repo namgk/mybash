@@ -122,3 +122,6 @@ alias ffmpeg-compress='ffmpeg -vcodec libx264 -crf 28 -preset ultrafast -i '
 
 alias ls='ls -lart'
 
+alias myip='curl ipconfig.io'
+alias certend='openssl x509 -enddate -noout'
+
